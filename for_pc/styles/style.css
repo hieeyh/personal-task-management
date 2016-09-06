@@ -25,6 +25,7 @@ header {
 header h1 {
 	margin-left: 20px;
 	font: 20px/4em 'Microsoft YaHei', sans-serif;
+	cursor: default;
 }
 
 #container {
@@ -50,6 +51,7 @@ section {
 
 #all-tasks p {
 	margin-top: 26px;
+	cursor: default;
 }
 
 #sort {
@@ -58,6 +60,7 @@ section {
 
 #sort p {
 	line-height: 36px;
+	cursor: default;
 }
 
 #sort ul {
@@ -74,6 +77,15 @@ section {
 	position: relative;
 	height: 36px;
 	border-radius: 8px;
+	cursor: pointer;
+}
+
+#ife,
+#graduation,
+#association,
+#family,
+#other {
+	cursor: default;
 }
 
 .li-img {
@@ -97,6 +109,7 @@ section {
 	border-top: solid 1px #000;
 	width: 316px;
 	background-color: #feb914;
+	cursor: pointer;
 }
 
 #task-list {
@@ -120,6 +133,12 @@ section {
 	padding: 5px 10px;
 }
 
+#all-task,
+#not-finish,
+#has-finish {
+	cursor: pointer;
+}
+
 .checked {
 	background-color: #feb914;
 	border-radius: 5px;
@@ -129,12 +148,14 @@ section {
 	line-height: 28px;
 	text-indent: 20px;
 	background-color: #feb914;
+	cursor: default;
 }
 
 .li-cont {
 	line-height: 28px;
 	text-indent: 38px;
 	background-color: #fff;
+	cursor: pointer;
 }
 
 .task-descript {
@@ -149,6 +170,16 @@ section {
 #task-new,
 #task-finish {
 	display: none;
+}
+
+#task-finish, 
+#task-display {
+	cursor: default;
+}
+
+#task-edit .task-time,
+#task-new .task-time {
+	cursor: default;
 }
 
 .finish-nav,
