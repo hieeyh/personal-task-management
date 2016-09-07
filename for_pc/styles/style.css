@@ -19,7 +19,7 @@ header {
 	width: 100%;
 	height: 80px;
 	color: #fff;
-	background-color: #262626;
+	background-color: #000;
 }
 
 header h1 {
@@ -173,14 +173,16 @@ section {
 }
 
 #task-finish, 
-#task-display {
-	cursor: default;
-}
-
+#task-display,
 #task-edit .task-time,
 #task-new .task-time {
 	cursor: default;
 }
+
+/*#task-edit .task-time,
+#task-new .task-time {
+	cursor: default;
+}*/
 
 .finish-nav,
 .descript-nav {
@@ -338,21 +340,14 @@ button {
 }
 
 @media screen and (max-width: 980px) {
-	#task-finish {
-		width: 980px;
-	}
 
-	#task-display {
-		width: 980px;
-	}
-
-	#task-edit {
-		width: 980px;
-	}
-
-	#task-new {
-		width: 980px;
-	}
+	header,
+    #task-finish,
+    #task-display,
+    #task-new,
+    #task-edit {
+        width: 980px;
+    }
 
 	input {
 		width: 200px;
@@ -360,10 +355,6 @@ button {
 
 	textarea {
 		width: 300px;
-	}
-
-	header {
-		width: 980px;
 	}
 
 	.finish {

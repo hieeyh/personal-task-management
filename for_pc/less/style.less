@@ -1,0 +1,388 @@
+@white: #fff;
+@black: #000;
+@orange: #feb914;
+@gray: #ddd;
+@default: default;
+@hand: pointer;
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Microsoft YaHei', sans-serif;
+}
+
+//兼容IE8
+.disblock {
+    display: block;
+}
+
+.posabsolute {
+    position: absolute;
+}
+
+.flleft {
+    float: left;
+}
+
+.posrela {
+    position: relative;
+}
+
+ul {
+    list-style: none;
+}
+
+header {
+    border-bottom: solid 1px #ddd;
+    &:extend(.disblock);
+    width: 100%;
+    height: 80px;
+    color: @white;
+    background-color: @black;
+
+    h1 {
+        margin-left: 20px;
+        font: 20px/4em 'Microsoft YaHei', sans-serif;
+        cursor: @default;        
+    }
+}
+
+#container {
+    &:extend(.posabsolute);
+    height: 100%;
+    width: 100%;
+}
+
+section {
+    &:extend(.disblock);
+    &:extend(.flleft);
+}
+
+.list-lay {
+    width: 300px;
+    height: 675px;
+    background-color: @orange;
+}
+
+.pad(@t, @r, @b, @l) {
+    padding: @t @r @b @l;
+}
+
+#all-tasks {
+    &:extend(.posrela);
+    .pad(0, 16px, 0, 16px);
+
+    p {
+        margin-top: 26px;
+        cursor: @default;
+    }
+}
+
+#sort {
+    margin-top: 24px;
+
+    p {
+        line-height: 36px;
+        cursor: @default;    
+    }
+
+    ul {
+        margin-left: 8px;
+        line-height: 36px;
+        vertical-align: middle;    
+    }
+}
+
+#ife ul li,
+#graduation ul li,
+#association ul li,
+#family ul li,
+#other ul li {
+    position: relative;
+    height: 36px;
+    border-radius: 8px;
+    cursor: @hand;
+}
+
+#ife,
+#graduation,
+#association,
+#family,
+#other {
+    cursor: @default;
+}
+
+.li-img {
+    &:extend(.posrela);
+    top: 5px;
+    margin-right: 6px;
+    width: 20px;
+    height: 20px;
+}
+
+.li-select {
+    background-color: @white;
+}
+
+.bord(@orit) {
+    @{orit}: solid 1px #000;
+}
+
+#new-task,
+#new-sort {
+    &:extend(.posabsolute);
+    bottom: 0px;
+    left: 0px;
+    .pad(6px, 0, 14px, 16px);
+    .bord(border-top);
+    width: 316px;
+    background-color: @orange;
+    cursor: @hand;
+}
+
+#task-list {
+    &:extend(.posrela);
+    .bord(border-right);
+    .bord(border-left);
+    width: 332px;
+    background-color: @white;
+}
+
+.task-nav {
+    .pad(9px, 0, 8px, 0);
+    height: 34px;
+    color: @white;
+    background-color: @black;  
+
+    li {
+        &:extend(.flleft);
+        margin-left: 35px;
+        .pad(5px, 10px, 5px, 10px);
+    }  
+}
+
+#all-task,
+#not-finish,
+#has-finish {
+    cursor: @hand;
+}
+
+.checked {
+    background-color: @orange;
+    border-radius: 5px;
+}
+
+.li-style(@liheight, @indent, @color, @curs) {
+    line-height: @liheight;
+    text-indent: @indent;
+    background-color: @color;
+    cursor: @curs;    
+}
+
+.li-time {
+    .li-style(28px, 20px, @orange, @default);
+}
+
+.li-cont {
+    .li-style(28px, 38px, @white, @hand);
+}
+
+.task-descript {
+    float: none;
+}
+
+.to-autowidth {
+    margin-left: 666px;
+}
+
+#task-edit,
+#task-new,
+#task-finish {
+    display: none;
+}
+
+#task-finish, 
+#task-display,
+#task-edit .task-time,
+#task-new .task-time {
+    cursor: @default;
+}
+
+.descript-nav {
+    height: 52px;
+    font-size: 18px;
+    font-weight: bold;
+    .li-style(52px, 10px, @black, @default);
+    color: #fff;
+
+    img {
+        width: 26px;
+        height: 26px;
+    }
+
+    input {
+        color: #fff;
+        background-color: #000;
+    }
+}  
+
+.finish-nav {
+    &:extend(.descript-nav);
+
+    img {
+        width: 26px;
+        height: 26px;
+    }
+}
+
+.task-title {
+    margin-left: 8px;
+}
+
+.task-time {
+    height: 52px;
+    .li-style(52px, 20px, @orange, @default);
+
+    input {
+        color: @black;
+        background-color: @orange;  
+    }
+    input:-ms-input-placeholder {
+        color: @black;
+    }
+    input::-webkit-input-placeholder {
+        color: @black;
+    }
+}
+
+.task-content {
+    margin-top: 10px;
+    text-indent: 20px;
+}
+
+.text-sty(@w, @h) {
+    border: none;
+    width: @w;
+    height: @h;
+    font-size: 16px;    
+    outline:none;    
+}
+
+input {
+    .text-sty(330px, 35px);
+}
+
+textarea {
+    .text-sty(100%, 520px);
+    resize: none;
+}
+
+input:-ms-input-placeholder {
+    font-size: 16px;
+    color: @white;
+}
+
+textarea:-ms-input-placeholder{
+    font-size: 16px;
+    color: @black;
+}
+
+input::-webkit-input-placeholder {
+    font-size: 16px;
+    color: @white;
+}
+
+textarea::-webkit-input-placeholder{
+    font-size: 16px;
+    color: @black;
+}
+
+input:-moz-placeholder { 
+    font-size: 16px;
+    color: @white;  
+}
+
+input::-moz-placeholder {  
+    font-size: 16px;
+    color: @white;
+}
+
+textarea:-moz-placeholder {   
+    font-size: 16px;
+    color: @black;  
+}
+
+textarea::-moz-placeholder { 
+    font-size: 16px;
+    color: @black;
+}
+
+::-ms-clear,
+::-ms-reveal {
+    display:none;
+}
+
+.button {
+    margin-left: 1140px;
+}
+
+button {
+    .text-sty(100px, 24px);
+    color: @white;
+    background-color: @black;
+}
+
+#task-title {
+    display: inline-block;
+}
+
+.finish {
+    position: absolute;
+    top: 12px;
+    right: 56px;
+}
+
+.edit {
+    &:extend(.finish);
+    right: 18px;
+}
+
+.delete {
+    &:extend(.posabsolute);
+    top: 8px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+}
+
+@media screen and (max-width: 980px) {
+    
+    header,
+    #task-finish,
+    #task-display,
+    #task-new,
+    #task-edit {
+        width: 980px;
+    }
+
+    input {
+        width: 200px;
+    }
+
+    textarea {
+        width: 300px;
+    }
+
+    .finish {
+        position: absolute;
+        top: 12px;
+        left: 900px;
+    }
+
+    .edit {
+        position: absolute;
+        top: 12px;
+        left: 938px;
+    }   
+}
