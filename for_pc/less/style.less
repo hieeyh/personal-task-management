@@ -213,7 +213,7 @@ section {
     font-size: 18px;
     font-weight: bold;
     .li-style(52px, 10px, @black, @default);
-    color: #fff;
+    color: @white;
 
     img {
         width: 26px;
@@ -221,8 +221,8 @@ section {
     }
 
     input {
-        color: #fff;
-        background-color: #000;
+        color: @white;
+        background-color: @black;
     }
 }  
 
@@ -337,7 +337,7 @@ button {
 }
 
 .finish {
-    position: absolute;
+    &:extend(.posabsolute);
     top: 12px;
     right: 56px;
 }
@@ -375,13 +375,13 @@ button {
     }
 
     .finish {
-        position: absolute;
+        &:extend(.posabsolute);
         top: 12px;
         left: 900px;
     }
 
     .edit {
-        position: absolute;
+        &:extend(.posabsolute);
         top: 12px;
         left: 938px;
     }   

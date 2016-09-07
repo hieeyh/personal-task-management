@@ -1,0 +1,371 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 'Microsoft YaHei', sans-serif;
+}
+
+/*兼容IE8*/
+header,
+section {
+	display: block;
+}
+
+ul {
+	list-style: none;
+}
+
+header {
+	border-bottom: solid 1px #ddd;
+	width: 100%;
+	height: 80px;
+	color: #fff;
+	background-color: #000;
+}
+
+header h1 {
+	margin-left: 20px;
+	font: 20px/4em 'Microsoft YaHei', sans-serif;
+	cursor: default;
+}
+
+#container {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+}
+
+section {
+	float: left;
+}
+
+.list-lay {
+	width: 300px;
+	height: 675px;
+	background-color: #feb914;
+}
+
+#all-tasks {
+	position: relative;
+	padding: 0 16px 0 16px;
+}
+
+#all-tasks p {
+	margin-top: 26px;
+	cursor: default;
+}
+
+#sort {
+	margin-top: 24px;
+}
+
+#sort p {
+	line-height: 36px;
+	cursor: default;
+}
+
+#sort ul {
+	margin-left: 8px;
+	line-height: 36px;
+	vertical-align: middle;
+}
+
+#ife ul li,
+#graduation ul li,
+#association ul li,
+#family ul li,
+#other ul li {
+	position: relative;
+	height: 36px;
+	border-radius: 8px;
+	cursor: pointer;
+}
+
+#ife,
+#graduation,
+#association,
+#family,
+#other {
+	cursor: default;
+}
+
+.li-img {
+	position: relative;
+	top: 5px;
+	margin-right: 6px;
+	width: 20px;
+	height: 20px;
+}
+
+.li-select {
+	background-color: #fff;
+}
+
+#new-task,
+#new-sort {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	padding: 6px 0 14px 16px;
+	border-top: solid 1px #000;
+	width: 316px;
+	background-color: #feb914;
+	cursor: pointer;
+}
+
+#task-list {
+	position: relative;
+	border-left: solid 1px #000;
+	border-right: solid 1px #000;
+	width: 332px;
+	background-color: #fff;
+}
+
+.task-nav {
+	padding: 8px 0;
+	height: 34px;
+	color: #fff;
+	background-color: #000;
+}
+
+.task-nav li{
+	float: left;
+	margin-left: 35px;
+	padding: 5px 10px;
+}
+
+#all-task,
+#not-finish,
+#has-finish {
+	cursor: pointer;
+}
+
+.checked {
+	background-color: #feb914;
+	border-radius: 5px;
+}
+
+.li-time {
+	line-height: 28px;
+	text-indent: 20px;
+	background-color: #feb914;
+	cursor: default;
+}
+
+.li-cont {
+	line-height: 28px;
+	text-indent: 38px;
+	background-color: #fff;
+	cursor: pointer;
+}
+
+.task-descript {
+	float: none;
+}
+
+.to-autowidth {
+	margin-left: 666px;
+}
+
+#task-edit,
+#task-new,
+#task-finish {
+	display: none;
+}
+
+#task-finish, 
+#task-display,
+#task-edit .task-time,
+#task-new .task-time {
+	cursor: default;
+}
+
+/*#task-edit .task-time,
+#task-new .task-time {
+	cursor: default;
+}*/
+
+.finish-nav,
+.descript-nav {
+	height: 52px;
+	font-size: 18px;
+	font-weight: bold;
+	line-height: 52px;
+	text-indent: 10px;
+	color: #fff;
+	background-color: #000;
+}
+
+.finish-nav img {
+	width: 26px;
+	height: 26px;
+}
+
+.task-title {
+	margin-left: 8px;
+}
+
+.descript-nav input {
+	color: #fff;
+	background-color: #000;
+}
+
+.descript-nav img {
+	width: 26px;
+	height: 26px;
+}
+
+.task-time {
+	height: 52px;
+	line-height: 52px;
+	text-indent: 20px;
+	background-color: #feb914;
+}
+
+.task-time input:-ms-input-placeholder {
+	color: #000;
+}
+
+.task-time input::-webkit-input-placeholder {
+	color: #000;
+}
+
+.task-time input {
+	color: #000;
+	background-color: #feb914;	
+}
+
+.task-content {
+	margin-top: 10px;
+	text-indent: 20px;
+}
+
+input {
+	border: none;
+	width: 330px;
+	height: 35px;
+	font-size: 16px;	
+	outline:none;
+}
+
+textarea {
+	border: none;
+	width: 100%;
+	height: 520px;
+	outline:none;
+	resize:none;
+}
+
+input:-ms-input-placeholder {
+	font-size: 16px;
+	color: #fff;
+}
+
+textarea:-ms-input-placeholder{
+	font-size: 16px;
+	color: #000;
+}
+
+input::-webkit-input-placeholder {
+	font-size: 16px;
+	color: #fff;
+}
+
+textarea::-webkit-input-placeholder{
+	font-size: 16px;
+	color: #000;
+}
+
+input:-moz-placeholder { 
+    font-size: 16px;
+    color: #fff;  
+}
+
+input::-moz-placeholder {  
+    font-size: 16px;
+    color: #fff;
+}
+
+textarea:-moz-placeholder {   
+    font-size: 16px;
+    color: #000;  
+}
+
+textarea::-moz-placeholder { 
+    font-size: 16px;
+    color: #000;
+}
+
+::-ms-clear,
+::-ms-reveal {
+	display:none;
+}
+
+.button {
+	margin-left: 1140px;
+}
+
+button {
+	border: none;
+	width: 100px;
+	height: 24px;
+	font-size: 18px;
+	color: #fff;
+	background-color: #000;
+	outline: none;
+}
+
+#task-title {
+	display: inline-block;
+}
+
+.finish {
+	position: absolute;
+	top: 12px;
+	right: 56px;
+}
+
+.edit {
+	position: absolute;
+	top: 12px;
+	right: 18px;
+}
+
+.delete {
+	position: absolute;
+	top: 8px;
+	right: 5px;
+	width: 20px;
+	height: 20px;
+	opacity: 0;
+}
+
+@media screen and (max-width: 980px) {
+
+	header,
+    #task-finish,
+    #task-display,
+    #task-new,
+    #task-edit {
+        width: 980px;
+    }
+
+	input {
+		width: 200px;
+	}
+
+	textarea {
+		width: 300px;
+	}
+
+	.finish {
+		position: absolute;
+		top: 12px;
+		left: 900px;
+	}
+
+	.edit {
+		position: absolute;
+		top: 12px;
+		left: 938px;
+	}	
+}

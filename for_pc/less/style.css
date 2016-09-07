@@ -12,7 +12,9 @@ section {
 #container,
 #new-task,
 #new-sort,
-.delete {
+.finish,
+.delete,
+.edit {
   position: absolute;
 }
 .flleft,
@@ -274,7 +276,6 @@ button {
 }
 .finish,
 .edit {
-  position: absolute;
   top: 12px;
   right: 56px;
 }
@@ -304,12 +305,10 @@ button {
   }
   .finish,
   .edit {
-    position: absolute;
     top: 12px;
     left: 900px;
   }
   .edit {
-    position: absolute;
     top: 12px;
     left: 938px;
   }

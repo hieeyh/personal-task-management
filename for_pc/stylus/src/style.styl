@@ -1,0 +1,324 @@
+bgwhite = #fff
+bgblack = #000
+bgorange = #feb914
+bordgray = #ddd
+cursdefault = default
+curshand = pointer
+
+*
+    margin: 0
+    padding: 0
+    font-family: 'Microsoft YaHei', sans-serif
+
+disblock()
+    display: block
+
+posabsolute()
+    position: absolute
+
+flleft()
+    float: left
+
+posrela()
+    position: relative
+
+ul
+    list-style: none
+
+header
+    disblock()
+    border-bottom: solid 1px #ddd
+    width: 100%
+    height: 80px
+    color: bgwhite
+    background-color: bgblack
+
+    h1
+        margin-left: 20px
+        font: 20px/4em 'Microsoft YaHei', sans-serif
+        cursor: cursdefault        
+
+#container
+    posabsolute()
+    height: 100%
+    width: 100%
+
+section
+    disblock()
+    flleft()
+
+.list-lay
+    width: 300px
+    height: 675px
+    background-color: bgorange
+
+pad($t, $r, $b, $l)
+    padding: $t $r $b $l
+
+#all-tasks
+    posrela()
+    pad(0, 16px, 0, 16px)
+
+    p
+        margin-top: 26px
+        cursor: cursdefault
+
+#sort
+    margin-top: 24px
+
+    p
+        line-height: 36px
+        cursor: cursdefault    
+
+    ul
+        margin-left: 8px
+        line-height: 36px
+        vertical-align: middle    
+
+ulli()
+    ul
+        li
+            posrela()
+            height: 36px
+            border-radius: 8px
+            cursor: curshand 
+
+#ife
+#graduation
+#association
+#family
+#other
+    ulli()
+
+#ife
+#graduation
+#association
+#family
+#other
+    cursor: cursdefault
+
+.li-img
+    posrela()
+    top: 5px
+    margin-right: 6px
+    width: 20px
+    height: 20px
+
+.li-select
+    background-color: bgwhite
+
+bord(orit)
+    {orit}: solid 1px #000
+
+#new-task
+#new-sort
+    posabsolute()
+    bottom: 0px
+    left: 0px
+    pad(6px, 0, 14px, 16px)
+    bord(border-top)
+    width: 316px
+    background-color: bgorange
+    cursor: curshand
+
+#task-list
+    posrela()
+    bord(border-right)
+    bord(border-left)
+    width: 332px
+    background-color: bgwhite
+
+.task-nav
+    pad(9px, 0, 8px, 0)
+    height: 34px
+    color: bgwhite
+    background-color: bgblack 
+
+    li
+        flleft()
+        margin-left: 35px
+        pad(5px, 10px, 5px, 10px) 
+
+#all-task
+#not-finish
+#has-finish
+    cursor: curshand
+
+.checked
+    background-color: bgorange
+    border-radius: 5px
+
+li-style($liheight, $indent, $color, $curs)
+    line-height: $liheight
+    text-indent: $indent
+    background-color: $color
+    cursor: $curs    
+
+.li-time
+    li-style(28px, 20px, bgorange, cursdefault)
+
+.li-cont
+    li-style(28px, 38px, bgwhite, curshand)
+
+.task-descript
+    float: none
+
+.to-autowidth
+    margin-left: 666px
+
+#task-edit
+#task-new
+#task-finish
+    display: none
+
+#task-finish 
+#task-display
+#task-edit .task-time
+#task-new .task-time
+    cursor: cursdefault
+
+.descript-nav
+    height: 52px
+    font-size: 18px
+    font-weight: bold
+    li-style(52px, 10px, bgblack, cursdefault)
+    color: bgwhite
+
+    img
+        width: 26px
+        height: 26px
+
+    input
+        color: bgwhite
+        background-color: bgblack
+
+.finish-nav
+    @extend .descript-nav
+
+    img
+        width: 26px
+        height: 26px
+
+.task-title
+    margin-left: 8px
+
+.task-time
+    height: 52px
+    li-style(52px, 20px, bgorange, cursdefault)
+
+    input
+        color: bgblack
+        background-color: bgorange  
+
+    input:-ms-input-placeholder 
+        color: bgblack
+    
+    input::-webkit-input-placeholder 
+        color: bgblack
+
+.task-content 
+    margin-top: 10px
+    text-indent: 20px
+
+text-sty($w, $h) 
+    border: none
+    width: $w
+    height: $h
+    font-size: 16px    
+    outline:none  
+
+input
+    text-sty(330px, 35px)
+
+textarea
+    text-sty(100%, 520px)
+    resize: none
+
+input:-ms-input-placeholder
+    font-size: 16px
+    color: bgwhite
+
+textarea:-ms-input-placeholder
+    font-size: 16px
+    color: bgblack
+
+input::-webkit-input-placeholder
+    font-size: 16px
+    color: bgwhite
+
+textarea::-webkit-input-placeholder
+    font-size: 16px
+    color: bgblack
+
+input:-moz-placeholder 
+    font-size: 16px
+    color: bgwhite 
+
+input::-moz-placeholder  
+    font-size: 16px
+    color: bgwhite
+
+textarea:-moz-placeholder   
+    font-size: 16px
+    color: bgblack  
+
+textarea::-moz-placeholder 
+    font-size: 16px
+    color: bgblack
+
+::-ms-clear
+::-ms-reveal
+    display:none
+
+.button
+    margin-left: 1140px
+
+button
+    text-sty(100px, 24px)
+    color: bgwhite
+    background-color: bgblack
+
+#task-title
+    display: inline-block
+
+.finish
+    posabsolute()
+    top: 12px
+    right: 56px
+
+.edit
+    @extend .finish
+    right: 18px
+
+.delete 
+    posabsolute()
+    top: 8px
+    right: 5px
+    width: 20px
+    height: 20px
+    opacity: 0
+
+@media screen and (max-width: 980px)    
+    header
+    #task-finish
+    #task-display
+    #task-new
+    #task-edit 
+        width: 980px
+
+    input
+        width: 200px
+
+    textarea 
+        width: 300px
+
+    .finish
+        posabsolute()
+        top: 12px
+        left: 900px
+
+    .edit
+        posabsolute()
+        top: 12px
+        left: 938px  
+
