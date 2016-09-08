@@ -189,6 +189,18 @@ input {
   height: 35px;
   font-size: 16px;
   outline: none; }
+  input:-ms-input-placeholder {
+    font-size: 16px;
+    color: #fff; }
+  input::-webkit-input-placeholder {
+    font-size: 16px;
+    color: #fff; }
+  input:-moz-placeholder {
+    font-size: 16px;
+    color: #fff; }
+  input::-moz-placeholder {
+    font-size: 16px;
+    color: #fff; }
 
 textarea {
   border: none;
@@ -197,38 +209,18 @@ textarea {
   font-size: 16px;
   outline: none;
   resize: none; }
-
-input:-ms-input-placeholder {
-  font-size: 16px;
-  color: #fff; }
-
-textarea:-ms-input-placeholder {
-  font-size: 16px;
-  color: #000; }
-
-input::-webkit-input-placeholder {
-  font-size: 16px;
-  color: #fff; }
-
-textarea::-webkit-input-placeholder {
-  font-size: 16px;
-  color: #000; }
-
-input:-moz-placeholder {
-  font-size: 16px;
-  color: #fff; }
-
-input::-moz-placeholder {
-  font-size: 16px;
-  color: #fff; }
-
-textarea:-moz-placeholder {
-  font-size: 16px;
-  color: #000; }
-
-textarea::-moz-placeholder {
-  font-size: 16px;
-  color: #000; }
+  textarea:-ms-input-placeholder {
+    font-size: 16px;
+    color: #000; }
+  textarea::-webkit-input-placeholder {
+    font-size: 16px;
+    color: #000; }
+  textarea:-moz-placeholder {
+    font-size: 16px;
+    color: #000; }
+  textarea::-moz-placeholder {
+    font-size: 16px;
+    color: #000; }
 
 ::-ms-clear,
 ::-ms-reveal {

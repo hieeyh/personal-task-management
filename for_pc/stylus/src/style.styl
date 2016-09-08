@@ -229,42 +229,34 @@ text-sty($w, $h)
 
 input
     text-sty(330px, 35px)
+    &:-ms-input-placeholder
+        font-size: 16px
+        color: bgwhite
+    &::-webkit-input-placeholder
+        font-size: 16px
+        color: bgwhite
+    &:-moz-placeholder 
+        font-size: 16px
+        color: bgwhite 
+    &::-moz-placeholder  
+        font-size: 16px
+        color: bgwhite
 
 textarea
     text-sty(100%, 520px)
     resize: none
-
-input:-ms-input-placeholder
-    font-size: 16px
-    color: bgwhite
-
-textarea:-ms-input-placeholder
-    font-size: 16px
-    color: bgblack
-
-input::-webkit-input-placeholder
-    font-size: 16px
-    color: bgwhite
-
-textarea::-webkit-input-placeholder
-    font-size: 16px
-    color: bgblack
-
-input:-moz-placeholder 
-    font-size: 16px
-    color: bgwhite 
-
-input::-moz-placeholder  
-    font-size: 16px
-    color: bgwhite
-
-textarea:-moz-placeholder   
-    font-size: 16px
-    color: bgblack  
-
-textarea::-moz-placeholder 
-    font-size: 16px
-    color: bgblack
+    &:-ms-input-placeholder
+        font-size: 16px
+        color: bgblack
+    &::-webkit-input-placeholder
+        font-size: 16px
+        color: bgblack
+    &:-moz-placeholder   
+        font-size: 16px
+        color: bgblack 
+    &::-moz-placeholder 
+        font-size: 16px
+        color: bgblack     
 
 ::-ms-clear
 ::-ms-reveal

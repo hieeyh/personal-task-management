@@ -12,19 +12,19 @@
 }
 
 //兼容IE8
-.disblock {
+.disblock() {
     display: block;
 }
 
-.posabsolute {
+.posabsolute() {
     position: absolute;
 }
 
-.flleft {
+.flleft() {
     float: left;
 }
 
-.posrela {
+.posrela() {
     position: relative;
 }
 
@@ -34,7 +34,7 @@ ul {
 
 header {
     border-bottom: solid 1px #ddd;
-    &:extend(.disblock);
+    .disblock;
     width: 100%;
     height: 80px;
     color: @white;
@@ -48,14 +48,14 @@ header {
 }
 
 #container {
-    &:extend(.posabsolute);
+    .posabsolute;
     height: 100%;
     width: 100%;
 }
 
 section {
-    &:extend(.disblock);
-    &:extend(.flleft);
+    .disblock;
+    .flleft;
 }
 
 .list-lay {
@@ -69,7 +69,7 @@ section {
 }
 
 #all-tasks {
-    &:extend(.posrela);
+    .posrela;
     .pad(0, 16px, 0, 16px);
 
     p {
@@ -113,7 +113,7 @@ section {
 }
 
 .li-img {
-    &:extend(.posrela);
+    .posrela;
     top: 5px;
     margin-right: 6px;
     width: 20px;
@@ -130,7 +130,7 @@ section {
 
 #new-task,
 #new-sort {
-    &:extend(.posabsolute);
+    .posabsolute;
     bottom: 0px;
     left: 0px;
     .pad(6px, 0, 14px, 16px);
@@ -141,7 +141,7 @@ section {
 }
 
 #task-list {
-    &:extend(.posrela);
+    .posrela;
     .bord(border-right);
     .bord(border-left);
     width: 332px;
@@ -155,7 +155,7 @@ section {
     background-color: @black;  
 
     li {
-        &:extend(.flleft);
+        .flleft;
         margin-left: 35px;
         .pad(5px, 10px, 5px, 10px);
     }  
@@ -270,51 +270,43 @@ section {
 
 input {
     .text-sty(330px, 35px);
+    &:-ms-input-placeholder {
+    font-size: 16px;
+    color: @white;
+    }
+    &::-webkit-input-placeholder {
+    font-size: 16px;
+    color: @white;
+    }
+    &:-moz-placeholder { 
+    font-size: 16px;
+    color: @white;  
+    }
+    &::-moz-placeholder {  
+    font-size: 16px;
+    color: @white;
+    }
 }
 
 textarea {
     .text-sty(100%, 520px);
     resize: none;
-}
-
-input:-ms-input-placeholder {
-    font-size: 16px;
-    color: @white;
-}
-
-textarea:-ms-input-placeholder{
+    &:-ms-input-placeholder{
     font-size: 16px;
     color: @black;
-}
-
-input::-webkit-input-placeholder {
-    font-size: 16px;
-    color: @white;
-}
-
-textarea::-webkit-input-placeholder{
+    }
+    &::-webkit-input-placeholder{
     font-size: 16px;
     color: @black;
-}
-
-input:-moz-placeholder { 
-    font-size: 16px;
-    color: @white;  
-}
-
-input::-moz-placeholder {  
-    font-size: 16px;
-    color: @white;
-}
-
-textarea:-moz-placeholder {   
+    }
+    &:-moz-placeholder {   
     font-size: 16px;
     color: @black;  
-}
-
-textarea::-moz-placeholder { 
+    }
+    &::-moz-placeholder { 
     font-size: 16px;
     color: @black;
+    }
 }
 
 ::-ms-clear,
@@ -337,7 +329,7 @@ button {
 }
 
 .finish {
-    &:extend(.posabsolute);
+    .posabsolute;
     top: 12px;
     right: 56px;
 }
@@ -348,7 +340,7 @@ button {
 }
 
 .delete {
-    &:extend(.posabsolute);
+    .posabsolute;
     top: 8px;
     right: 5px;
     width: 20px;
@@ -375,13 +367,13 @@ button {
     }
 
     .finish {
-        &:extend(.posabsolute);
+        .posabsolute;
         top: 12px;
         left: 900px;
     }
 
     .edit {
-        &:extend(.posabsolute);
+        .posabsolute;
         top: 12px;
         left: 938px;
     }   

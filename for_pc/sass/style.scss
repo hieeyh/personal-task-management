@@ -269,51 +269,43 @@ section {
 
 input {
     @include text-sty(330px, 35px);
+    &:-ms-input-placeholder {
+    font-size: 16px;
+    color: $white;
+    }
+    &::-webkit-input-placeholder {
+    font-size: 16px;
+    color: $white;
+    }
+    &:-moz-placeholder { 
+    font-size: 16px;
+    color: $white;  
+    }
+    &::-moz-placeholder {  
+    font-size: 16px;
+    color: $white;
+    }    
 }
 
 textarea {
     @include text-sty(100%, 520px);
     resize: none;
-}
-
-input:-ms-input-placeholder {
-    font-size: 16px;
-    color: $white;
-}
-
-textarea:-ms-input-placeholder{
+    &:-ms-input-placeholder{
     font-size: 16px;
     color: $black;
-}
-
-input::-webkit-input-placeholder {
-    font-size: 16px;
-    color: $white;
-}
-
-textarea::-webkit-input-placeholder{
+    }
+    &::-webkit-input-placeholder{
     font-size: 16px;
     color: $black;
-}
-
-input:-moz-placeholder { 
-    font-size: 16px;
-    color: $white;  
-}
-
-input::-moz-placeholder {  
-    font-size: 16px;
-    color: $white;
-}
-
-textarea:-moz-placeholder {   
+    }
+    &:-moz-placeholder {   
     font-size: 16px;
     color: $black;  
-}
-
-textarea::-moz-placeholder { 
+    }
+    &::-moz-placeholder { 
     font-size: 16px;
     color: $black;
+    }    
 }
 
 ::-ms-clear,
