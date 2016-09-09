@@ -1,6 +1,10 @@
 
 window.onload = function() {
      
+    //防御触屏攻击
+    if (top.location != location) {
+        top.location = self.location;
+    }
     var newSort = document.getElementById("new-sort");
     var newTask = document.getElementById("new-task");
 
@@ -97,7 +101,11 @@ if (!Array.prototype.indexOf) {
 function addNewSort() {
 
     var name = prompt("请输入任务分类名字：", "");
-    if (name !== null && name !== "") {
+    var islegal = name.indexOf("<script") !== -1 || name.indexOf("<iframe") !== -1 || name.indexOf("<img") !== -1 || name.indexOf("<video") !== -1 || name.indexOf("<audio") !== -1 || name.indexOf("<base") !== -1 || name.indexOf("<form") !== -1;
+    if (islegal) {
+        alert("请输入有效的任务分类名字！");
+    }
+    if (name !== null && name !== "" && !islegal) {
 
         var selectedSort = document.getElementsByClassName("selected")[0];
         var selectedId = selectedSort.getAttribute("id");
@@ -393,20 +401,26 @@ function isInputTaskRight(title, content) {
 
     var titleContain = (title.indexOf("^") !== -1) || (title.indexOf("$") !== -1) || (title.indexOf("$") !== -1);
     var contentContain = (content.indexOf("^") !== -1) || (content.indexOf("$") !== -1) || (content.indexOf("$") !== -1);
-
+    var titleLegal = title.indexOf("<script") !== -1 || title.indexOf("<iframe") !== -1 || title.indexOf("<img") !== -1 || title.indexOf("<video") !== -1 || title.indexOf("<audio") !== -1 || title.indexOf("<base") !== -1 || title.indexOf("<form") !== -1;
+    var contentLegal = content.indexOf("<script") !== -1 || content.indexOf("<iframe") !== -1 || content.indexOf("<img") !== -1 || content.indexOf("<video") !== -1 || content.indexOf("<audio") !== -1 || content.indexOf("<base") !== -1 || content.indexOf("<form") !== -1;
+    
     if (title.length > 15) {
         alert("标题字数不能超过15个字！");
     }
 
     if (titleContain || contentContain) {
         alert("标题或者内容中不能包括$、&、^字符！");
-    }  
+    } 
+
+    if (titleLegal || contentLegal) {
+        alert("请输入合法的标题或内容！");
+    } 
 
     if (content.length > 500) {
         alert("内容字数不能超过500个字！");
     }
 
-    if ((title.length <=15) && (content.length <= 500) && !(titleContain || contentContain)) {
+    if ((title.length <=15) && (content.length <= 500) && !(titleContain || contentContain) && !titleLegal && !contentLegal) {
         return true;
     } else {
         return false;
