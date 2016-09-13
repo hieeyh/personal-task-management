@@ -1,13 +1,11 @@
 
-window.onload = function() {
-     
+window.onload = function() {   
     //防御触屏攻击
     if (top.location != location) {
         top.location = self.location;
     }
     var newSort = document.getElementById("new-sort");
     var newTask = document.getElementById("new-task");
-
     //给增加分类和增加任务按钮添加事件
     newSort.onclick = addNewSort;
     newTask.onclick = addNewTask;
@@ -24,17 +22,13 @@ window.onload = function() {
     }
 
     //显示主分类的任务数量
-    displayAllTaskNum();
-    
+    displayAllTaskNum();    
     //选中一个默认分类
     selectDefaultClass();
-
     //给中间列的标签添加事件
     addEventListenerToSort();
-
     //加载中间列的相关数据
     loadAllSortTask();
-
     //给中间列的按钮添加事件
     addEventListenerToButton();
 }
@@ -63,10 +57,8 @@ if(!document.getElementsByClassName){
 }  
 
 if (getFuncParameters(document.getElementsByClassName) === undefined) {
-
     var isGetClass = true;
 } else {
-
     var isGetClass = false;
 }
 
@@ -99,14 +91,12 @@ if (!Array.prototype.indexOf) {
 
 //添加分类按钮事件处理函数
 function addNewSort() {
-
     var name = prompt("请输入任务分类名字：", "");
     var islegal = name.indexOf("<script") !== -1 || name.indexOf("<iframe") !== -1 || name.indexOf("<img") !== -1 || name.indexOf("<video") !== -1 || name.indexOf("<audio") !== -1 || name.indexOf("<base") !== -1 || name.indexOf("<form") !== -1;
     if (islegal) {
         alert("请输入有效的任务分类名字！");
     }
     if (name !== null && name !== "" && !islegal) {
-
         var selectedSort = document.getElementsByClassName("selected")[0];
         var selectedId = selectedSort.getAttribute("id");
         var selectedVal = oStorage.getItem(selectedId);
@@ -135,8 +125,7 @@ function addNewSort() {
         loadAllSortTask();  
 
         //增加选中监听事件
-        newSortLi.onclick = function(event) {
-            
+        newSortLi.onclick = function(event) {            
             var event = window.event || event;
             if (event && event.stopPropagation){
                 event.stopPropagation();    
@@ -147,10 +136,8 @@ function addNewSort() {
 
             addEventToNewSort(newSortLi);
         }
-
         //增加删除监听事件
         newSortLi.onmouseover = function() {
-
             if (isGetClass) {
                 var deleteImg = this.getElementsByClassName("delete")[0];
             } else {
@@ -160,8 +147,7 @@ function addNewSort() {
             deleteImg.style.opacity = 1.0;
 
             deleteImg.onclick = function(event) {
-                var that = this;
-                
+                var that = this;                
                 //阻止事件冒泡
                 var event = window.event || event;
                 if (event && event.stopPropagation){
@@ -170,13 +156,11 @@ function addNewSort() {
                 else {
                     event.cancelBubble = true;
                 }
-
                 addEventToDeleteSort(that, selectedId, newSortLi);             
             }       
         }
 
         newSortLi.onmouseout = function() {
-
             if (isGetClass) {
                 var deleteImg = this.getElementsByClassName("delete")[0];
             } else {
@@ -189,11 +173,9 @@ function addNewSort() {
 
 //给新添加的分类标签添加的点击事件内容
 function addEventToNewSort(newSortLi) {
-
     var selectedLi = document.getElementsByClassName("li-select");
             
-    if (selectedLi.length === 0) {
-                
+    if (selectedLi.length === 0) {                
         newSortLi.setAttribute("class", "li-select");
         newSortLi.parentNode.parentNode.setAttribute("class", "selected");
     } else {
@@ -209,12 +191,10 @@ function addEventToNewSort(newSortLi) {
 }
 
 //给新添加的分类标签添加的删除事件内容
-function addEventToDeleteSort(that, selectedId, newSortLi) {
-   
+function addEventToDeleteSort(that, selectedId, newSortLi) {   
     var confi = confirm("确认删除该类别？");
     
-    if (confi) {
-           
+    if (confi) {           
         var deleteLi = that.parentNode;
         var deleteSort = deleteLi.parentNode.parentNode;
         var strSort = oStorage.getItem(deleteSort.getAttribute("id"));
@@ -240,18 +220,15 @@ function addEventToDeleteSort(that, selectedId, newSortLi) {
         selectDefaultClass(); 
         clearTaskList();
         loadAllSortTask();      
-        //displayTaskNum(selectedId);
         displayAllTaskNum();  
     }  
 }
 
 //添加任务按钮事件处理函数
 function addNewTask() {
-
     var liSelect = document.getElementsByClassName("li-select");
 
     if (liSelect.length !== 0) {
-
         for (var i = 0; i < 4; i++) {    
                 document.getElementById(arrDescript[i]).style.display = "none";
         }
@@ -261,14 +238,12 @@ function addNewTask() {
         var taskNew = document.getElementById(arrDescript[3]);
 
         if (isGetClass) {
-
             var sureBtn = taskNew.getElementsByClassName("sure")[0];
             var quitBtn = taskNew.getElementsByClassName("quit")[0];
             var newTitle = taskNew.getElementsByClassName("task-title")[0];
             var newTime = taskNew.getElementsByClassName("time")[0];
             var newContent = taskNew.getElementsByClassName("task-content")[0];            
         } else {
-
             var sureBtn = document.getElementsByClassName("sure", taskNew)[0];
             var quitBtn = document.getElementsByClassName("quit", taskNew)[0];
             var newTitle = document.getElementsByClassName("task-title", taskNew)[0];
@@ -282,7 +257,6 @@ function addNewTask() {
 
         //placeholder兼容IE8 IE9
         if(!isPlaceholer()){
-
             var titleVar = newTitle.getAttribute("placeholder");
             var timeVar = newTime.getAttribute("placeholder");
             var contentVar = newContent.getAttribute("placeholder");
@@ -293,14 +267,11 @@ function addNewTask() {
         }
 
         sureBtn.onclick = function() {
-
             addEventToSureBtn(taskNew);
         }
 
         quitBtn.onclick = function() {
-
             for (var i = 0; i < 4; i++) {
-
                 if (i !== 0) {      
                     document.getElementById(arrDescript[i]).style.display = "none";
                 }
@@ -327,14 +298,11 @@ function addNewTask() {
 
 //判断浏览器是否支持placeholder
 function isPlaceholer(){
-
     var input = document.createElement("input");
-
-        return "placeholder" in input;
+    return "placeholder" in input;
 }
 
 function placeholder(input){
-
     var text = input.getAttribute("placeholder");
     var defaultValue = input.defaultValue;
 
@@ -356,7 +324,6 @@ function placeholder(input){
 
 //给编辑确认按钮的事件处理函数
 function addEventToSureBtn(taskNew) {
-
     if (isGetClass) {
         var title = taskNew.getElementsByClassName("task-title")[0].value;
         var time = taskNew.getElementsByClassName("time")[0].value;
@@ -373,8 +340,7 @@ function addEventToSureBtn(taskNew) {
         alert("标题不能重复，请重新输入！");
     }
 
-    if (isRightDate(time) && isRight && !isRepeat(title)) {
-                
+    if (isRightDate(time) && isRight && !isRepeat(title)) {                
         var belongMainSort = document.getElementsByClassName("selected")[0];
         var belongSubSort = document.getElementsByClassName("li-select")[0];
         var oldContent = oStorage.getItem(belongMainSort.getAttribute("id")+"content");
@@ -398,7 +364,6 @@ function addEventToSureBtn(taskNew) {
 
 //确认输入的任务内容是否正确
 function isInputTaskRight(title, content) {
-
     var titleContain = (title.indexOf("^") !== -1) || (title.indexOf("$") !== -1) || (title.indexOf("$") !== -1);
     var contentContain = (content.indexOf("^") !== -1) || (content.indexOf("$") !== -1) || (content.indexOf("$") !== -1);
     var titleLegal = title.indexOf("<script") !== -1 || title.indexOf("<iframe") !== -1 || title.indexOf("<img") !== -1 || title.indexOf("<video") !== -1 || title.indexOf("<audio") !== -1 || title.indexOf("<base") !== -1 || title.indexOf("<form") !== -1;
@@ -429,7 +394,6 @@ function isInputTaskRight(title, content) {
 
 //判断标题是否重复
 function isRepeat(title) {
-
     var ifeContent = oStorage.getItem("ifecontent");
     var graduationContent = oStorage.getItem("graduationcontent");
     var associationContent = oStorage.getItem("associationcontent");
@@ -461,7 +425,6 @@ function isRepeat(title) {
 
 //判断输入的日期是否正确
 function isRightDate(time) {
-
     var reg = /^(\d{4})-(\d{2})-(\d{2})$/;  
     var arr = reg.exec(time);
 
@@ -474,10 +437,8 @@ function isRightDate(time) {
 }
 
 //加载某分类下的数据
-function loadClassificationData(selectedId) {
-    
-    if (oStorage.getItem(selectedId) !== null && oStorage.getItem(selectedId) !== "") {
-        
+function loadClassificationData(selectedId) {   
+    if (oStorage.getItem(selectedId) !== null && oStorage.getItem(selectedId) !== "") {        
         var selectedVal = oStorage.getItem(selectedId);
         var arrSort = selectedVal.split("$");
         var selectedSort = document.getElementById(selectedId);
@@ -491,9 +452,7 @@ function loadClassificationData(selectedId) {
         selectedSort.setAttribute("class", "selected");
 
         for (var i = 1; i < arrSort.length; i++) {
-
             (function(x) {
-
                 var newSortLi = document.createElement("li");
                 var num = getTaskNum(selectedId, arrSort[x]);
 
@@ -557,7 +516,6 @@ function loadClassificationData(selectedId) {
                 }  
             })(i);
         }
-
         if (isGetClass) {
             selectedSort.getElementsByClassName("all-num")[0].innerHTML = "("+ allnum + ")";
         } else {
@@ -571,21 +529,17 @@ function loadClassificationData(selectedId) {
 }
 
 //清空中间列的数据
-function clearTaskList() {
-    
+function clearTaskList() {   
     var liTime = document.getElementsByClassName("li-time")[0];
-
     liTime.innerHTML = "";
 }
 
 //加载中间列及对应的右边列的数据
-function loadAllSortTask() {
-    
+function loadAllSortTask() {   
     var selected = document.getElementsByClassName("selected")[0];
     var selectedLi = document.getElementsByClassName("li-select");
 
     if (isGetClass) {
-
         document.getElementById("ife").getElementsByClassName("li-img")[0].setAttribute("src", "images/folder.png");
         document.getElementById("graduation").getElementsByClassName("li-img")[0].setAttribute("src", "images/folder.png");
         document.getElementById("association").getElementsByClassName("li-img")[0].setAttribute("src", "images/folder.png");
@@ -595,7 +549,6 @@ function loadAllSortTask() {
         //设置按钮样式
         document.getElementById(selected.getAttribute("id")).getElementsByClassName("li-img")[0].setAttribute("src", "images/folder_white.png");       
     } else {
-
         document.getElementsByClassName("li-img", document.getElementById("ife"))[0].setAttribute("src", "images/folder.png");
         document.getElementsByClassName("li-img", document.getElementById("graduation"))[0].setAttribute("src", "images/folder.png");
         document.getElementsByClassName("li-img", document.getElementById("association"))[0].setAttribute("src", "images/folder.png");
@@ -611,15 +564,12 @@ function loadAllSortTask() {
     document.getElementById("all-task").setAttribute("class", "checked");
 
     if (selectedLi.length !== 0) {
-
         var liSelect = selectedLi[0];
         var selectedTask = liSelect.getAttribute("id");
         var taskData = oStorage.getItem(selected.getAttribute("id") + "content");
         
-        if(taskData !== null && taskData !== "") {
-           
-            if (taskData.length !== 0) {
-                
+        if(taskData !== null && taskData !== "") {          
+            if (taskData.length !== 0) {               
                 var arrTaskContent = taskData.split("&");
                 var timetitleArr = [];
                 var arrTime = [];
@@ -627,7 +577,6 @@ function loadAllSortTask() {
                 var arrTask = []
                 
                 for (var i = 1; i < arrTaskContent.length; i++) {
-
                     var arr = arrTaskContent[i].toString().split("^");
 
                     arrTime[i-1] = arr[2];
@@ -639,7 +588,6 @@ function loadAllSortTask() {
                 var resultArr = [];
 
                 arrTime = uniqArray(arrTime);
-
                 //给数组排序
                 arrTime = squenceTime(arrTime);
 
@@ -668,7 +616,6 @@ function loadAllSortTask() {
                     displayTaskContent(selected, liSelect, arrDescript, mytitle);
                 } else {
                     for (var i = 0; i < 4; i++) {
-
                         if (i !== 0) {      
                             document.getElementById(arrDescript[i]).style.display = "none";
                         }
@@ -688,18 +635,15 @@ function loadAllSortTask() {
                     }                
                 }
             
-                for (var i = 0; i < arrTime.length; i++) {
-                    
+                for (var i = 0; i < arrTime.length; i++) {                    
                     var liTime = document.createElement("li"); 
                     var allTask = resultArr[i];
                     var arrTask = allTask.split("^");
 
                     liTime.innerHTML = arrTime[i];
 
-                    for (var j = 1; j < arrTask.length; j+=2) {
-                        
+                    for (var j = 1; j < arrTask.length; j+=2) {                       
                         if (arrTask[j] === selectedTask) {
-
                             var ulCont = document.createElement("ul");
                             var liCont = document.createElement("li");
 
@@ -717,7 +661,6 @@ function loadAllSortTask() {
                                     displayTaskContent(selected, liSelect, arrDescript, this.innerHTML);
                                 }
                             })();
-                    
                             liTime.appendChild(ulCont);     
                             ulTime.appendChild(liTime);                 
                         }                       
@@ -737,19 +680,16 @@ function loadAllSortTask() {
             var finishTask = document.getElementById(arrDescript[0]);
 
             if (isGetClass) {
-
                 finishTask.getElementsByClassName("task-title")[0].innerHTML = "";
                 finishTask.getElementsByTagName("time")[0].innerHTML = "";
                 finishTask.getElementsByClassName("task-content")[0].innerHTML = "";                          
             } else {
-
                 document.getElementsByClassName("task-title", finishTask)[0].innerHTML = "";
                 finishTask.getElementsByTagName("time")[0].innerHTML = "";
                 document.getElementsByClassName("task-content", finishTask)[0].innerHTML = "";  
             }              
         }
-    } else {
-            
+    } else {            
         for (var i = 0; i < 4; i++) {
             if (i !== 0) {
                 document.getElementById(arrDescript[i]).style.display = "none";
@@ -760,12 +700,10 @@ function loadAllSortTask() {
         var finishTask = document.getElementById(arrDescript[0]);
 
         if (isGetClass) {
-
             finishTask.getElementsByClassName("task-title")[0].innerHTML = "";
             finishTask.getElementsByTagName("time")[0].innerHTML = "";
             finishTask.getElementsByClassName("task-content")[0].innerHTML = "";                          
         } else {
-
             document.getElementsByClassName("task-title", finishTask)[0].innerHTML = "";
             finishTask.getElementsByTagName("time")[0].innerHTML = "";
             document.getElementsByClassName("task-content", finishTask)[0].innerHTML = "";  
@@ -775,7 +713,6 @@ function loadAllSortTask() {
 
 //删除数组重复元素
 function uniqArray(arr) {
-
     var newArr = [];
 
     for(var i = 0; i < arr.length; i++) {
@@ -787,21 +724,17 @@ function uniqArray(arr) {
 }
 
 //给时间数组排序
-function squenceTime(arrTime) {
-    
+function squenceTime(arrTime) {    
     var resultArr = [];
 
     for(var i = 0; i < arrTime.length; i++) {
-
         var arrDate = arrTime[i].toString().split("-");
         resultArr[i] = new Date(arrDate[0], arrDate[1] - 1, arrDate[2]).getTime();
-        //resultArr[i] = new Date(arrTime[i] + " 00:00:00").getTime();
     }
     
     resultArr = resultArr.sort();
    
     for (var i = 0; i < resultArr.length; i++) {
-
         var year = new Date(resultArr[i]).getFullYear();
         var month = new Date(resultArr[i]).getMonth() + 1;
         var date = new Date(resultArr[i]).getDate();
@@ -813,17 +746,14 @@ function squenceTime(arrTime) {
 }
 
 //选中一个默认分类
-function selectDefaultClass() {
-    
+function selectDefaultClass() {    
     var sortList = document.getElementById("sort");
     var allSort = sortList.getElementsByTagName("ul");    
     var i = 1;
 
     while (i < allSort.length) {
-
          if(allSort[i].length !== 0) {
             if (allSort[i].getElementsByTagName("li").length !== 0) {
-
                 var sortTask = allSort[i].getElementsByTagName("li"); 
 
                 sortTask[0].setAttribute("class", "li-select");
@@ -833,7 +763,6 @@ function selectDefaultClass() {
          }
          i++;
     }
-
     if(document.getElementsByClassName("selected").length == 0) {
         document.getElementById("ife").setAttribute("class", "selected");
     }
@@ -841,15 +770,12 @@ function selectDefaultClass() {
 
 //删除localstorage中被删除分类相关的任务数据
 function deleteTaskContent(mainId, subId) {
-
-    if (oStorage.getItem(mainId + "content") !== null && oStorage.getItem(mainId + "content") !== "") {
-        
+    if (oStorage.getItem(mainId + "content") !== null && oStorage.getItem(mainId + "content") !== "") {       
         var mainTask = oStorage.getItem(mainId + "content");
         var arrMain = mainTask.split("&");
         var newMain = "";
 
         for (var i = 1; i < arrMain.length; i++) {
-
             var arrSub = arrMain[i].split("^");
 
             if (arrSub[0] !== subId) {
@@ -862,8 +788,7 @@ function deleteTaskContent(mainId, subId) {
 }
 
 //显示最右边列表示的任务具体内容
-function displayTaskContent(belongMainSort, belongSubSort, arrDescript, mytitle) {
-    
+function displayTaskContent(belongMainSort, belongSubSort, arrDescript, mytitle) {   
     var displayTask = document.getElementById(arrDescript[1]);
     var finishTask = document.getElementById(arrDescript[0]);
     var mainSortId = belongMainSort.getAttribute("id");
@@ -872,7 +797,6 @@ function displayTaskContent(belongMainSort, belongSubSort, arrDescript, mytitle)
     var arrTaskContent = allContent.split("&");
     
     if (oStorage.getItem(mytitle) !== "finish") {
-
         for (var i = 0; i < 4; i++) {
             if (i !== 1) {              
                 document.getElementById(arrDescript[i]).style.display = "none";
@@ -881,7 +805,6 @@ function displayTaskContent(belongMainSort, belongSubSort, arrDescript, mytitle)
         document.getElementById(arrDescript[1]).style.display = "block";
 
         for (var i = 0; i < arrTaskContent.length; i++) {
-
             if ((arrTaskContent[i].indexOf(subSortId) !== -1) && (arrTaskContent[i].indexOf(mytitle) !== -1)) {
                 var arr = arrTaskContent[i].split("^");
 
@@ -897,9 +820,8 @@ function displayTaskContent(belongMainSort, belongSubSort, arrDescript, mytitle)
             }
         }
         //给display页面的上的按钮增加监听事件
-        addEventListenerToDisplay();        
-    } else {
-       
+        addEventListenerToDisplay();  
+    } else {       
         for (var i = 0; i < 4; i++) {
             if (i !== 0) {              
                 document.getElementById(arrDescript[i]).style.display = "none";
@@ -908,18 +830,14 @@ function displayTaskContent(belongMainSort, belongSubSort, arrDescript, mytitle)
         document.getElementById(arrDescript[0]).style.display = "block";
 
         for (var i = 0; i < arrTaskContent.length; i++) {
-
             var arr = arrTaskContent[i].toString().split("^");
             
-            if (arr[0] === subSortId && arr[1] === mytitle) {
-                
+            if (arr[0] === subSortId && arr[1] === mytitle) {                
                 if (isGetClass) {
-
                     finishTask.getElementsByClassName("task-title")[0].innerHTML = arr[1];
                     finishTask.getElementsByTagName("time")[0].innerHTML = arr[2];
                     finishTask.getElementsByClassName("task-content")[0].innerHTML = arr[3];                    
                 } else {
-
                     document.getElementsByClassName("task-title", finishTask)[0].innerHTML = arr[1];
                     finishTask.getElementsByTagName("time")[0].innerHTML = arr[2];
                     document.getElementsByClassName("task-content", finishTask)[0].innerHTML = arr[3];
@@ -930,18 +848,15 @@ function displayTaskContent(belongMainSort, belongSubSort, arrDescript, mytitle)
 }
 
 //显示子分类的任务数量
-function displayTaskNum(sortId) {
-    
+function displayTaskNum(sortId) {   
     var selectedSort = document.getElementById(sortId);
     var allnum = 0;
 
     if (oStorage.getItem(sortId) !== null && oStorage.getItem(sortId) !== "") {
-
         var sortContent = oStorage.getItem(sortId);
         var arrSort = sortContent.split("$");
 
-        for (var i = 1; i < arrSort.length; i++) {
-            
+        for (var i = 1; i < arrSort.length; i++) {            
             var num = getTaskNum(sortId, arrSort[i]);
             allnum += num;                                                          
         }
@@ -952,7 +867,6 @@ function displayTaskNum(sortId) {
             document.getElementsByClassName("all-num", selectedSort)[0].innerHTML = "("+ allnum + ")";
         }                
     } else {
-
         if (isGetClass) {
             selectedSort.getElementsByClassName("all-num")[0].innerHTML = "("+ 0 + ")";
         } else {
@@ -964,16 +878,13 @@ function displayTaskNum(sortId) {
 
 //返回对应分类的任务数
 function getTaskNum(sortId, taskId) {
-
     var taskContent = oStorage.getItem(sortId + "content");
     var num = 0;
 
     if (taskContent !== null && taskContent !== "") {
-
         var arrContent = taskContent.split("&");
 
         for (var i = 1; i < arrContent.length; i++) {
-
             if (arrContent[i].split("^")[0] === taskId) {
                 num ++;
             }
@@ -984,7 +895,6 @@ function getTaskNum(sortId, taskId) {
 
 //更新任务数量
 function updateTaskNum(sortId, taskId) {
-
     var mainSort = document.getElementById(sortId);
     var subSort = document.getElementById(taskId);
     if (isGetClass) {
@@ -1008,7 +918,6 @@ function updateTaskNum(sortId, taskId) {
 
 //显示总任务数量
 function displayAllTaskNum() {
-
     var numSpan = document.getElementById("whole-num");
     var num1 = displayTaskNum("ife");
     var num2 = displayTaskNum("graduation");
@@ -1026,25 +935,20 @@ function displayAllTaskNum() {
 
 //给display页面的按钮添加事件
 function addEventListenerToDisplay() {
-
     var displayTask = document.getElementById("task-display");
     var arrImg = displayTask.getElementsByTagName("img");
 
     if (isGetClass) {
-
         var oldTitle = displayTask.getElementsByClassName("task-title")[0].innerHTML;
         var oldTime = displayTask.getElementsByTagName("time")[0].innerHTML;
         var oldContent = displayTask.getElementsByClassName("task-content")[0].innerHTML;        
     } else {
-
         var oldTitle = document.getElementsByClassName("task-title", displayTask)[0].innerHTML;
         var oldTime = displayTask.getElementsByTagName("time")[0].innerHTML;
         var oldContent = document.getElementsByClassName("task-content", displayTask)[0].innerHTML;
     }
 
-
     arrImg[0].onclick = function() {
-
         if (isGetClass) {
             var title = displayTask.getElementsByClassName("task-title")[0].innerHTML;
             var time = displayTask.getElementsByTagName("time")[0].innerHTML;
@@ -1061,7 +965,6 @@ function addEventListenerToDisplay() {
             oStorage.setItem(title, "finish");
             //跳到finish页面
             for (var i = 0; i < 4; i++) {
-
                 document.getElementById(arrDescript[i]).style.display = "none";
             }
             document.getElementById(arrDescript[0]).style.display = "block";    
@@ -1069,7 +972,6 @@ function addEventListenerToDisplay() {
             var finishTask = document.getElementById("task-finish");
             
             if (isGetClass) {
-
                 finishTask.getElementsByClassName("task-title")[0].innerHTML = title;
                 finishTask.getElementsByTagName("time")[0].innerHTML = time;
                 finishTask.getElementsByClassName("task-content")[0].innerHTML = content;                 
@@ -1083,14 +985,22 @@ function addEventListenerToDisplay() {
             loadAllSortTask();
 
             for (var i = 0; i < 4; i++) {
-
-                    document.getElementById(arrDescript[i]).style.display = "none";
+                document.getElementById(arrDescript[i]).style.display = "none";
             }
             document.getElementById(arrDescript[0]).style.display = "block";    
         }
     }
 
     arrImg[1].onclick = function() {
+        if (isGetClass) {
+        var oldTitle = displayTask.getElementsByClassName("task-title")[0].innerHTML;
+        var oldTime = displayTask.getElementsByTagName("time")[0].innerHTML;
+        var oldContent = displayTask.getElementsByClassName("task-content")[0].innerHTML;        
+    } else {
+        var oldTitle = document.getElementsByClassName("task-title", displayTask)[0].innerHTML;
+        var oldTime = displayTask.getElementsByTagName("time")[0].innerHTML;
+        var oldContent = document.getElementsByClassName("task-content", displayTask)[0].innerHTML;
+    }
 
         var belongMainSort = document.getElementsByClassName("selected")[0];
         var belongSubSort = document.getElementsByClassName("li-select")[0];
@@ -1100,20 +1010,17 @@ function addEventListenerToDisplay() {
 
         //跳到edit页面
         for (var i = 0; i < 4; i++) {
-
                 document.getElementById(arrDescript[i]).style.display = "none";
         }
         document.getElementById(arrDescript[2]).style.display = "block";
 
         if (isGetClass) {
-
             var sureBtn = taskEdit.getElementsByClassName("sure")[0];
             var quitBtn = taskEdit.getElementsByClassName("quit")[0];
             taskEdit.getElementsByClassName("task-title")[0].value = oldTitle;
             taskEdit.getElementsByClassName("time")[0].value = oldTime;
             taskEdit.getElementsByClassName("task-content")[0].value = oldContent;                
         } else {
-
             var sureBtn = document.getElementsByClassName("sure", taskEdit)[0];
             var quitBtn = document.getElementsByClassName("quit", taskEdit)[0];
             document.getElementsByClassName("task-title", taskEdit)[0].value = oldTitle;
@@ -1122,9 +1029,7 @@ function addEventListenerToDisplay() {
         }
           
         sureBtn.onclick = function() {
-
             if (isGetClass) {
-
                 var title = taskEdit.getElementsByClassName("task-title")[0].value;
                 var time = taskEdit.getElementsByClassName("time")[0].value;
                 var content = taskEdit.getElementsByClassName("task-content")[0].value;                
@@ -1133,11 +1038,10 @@ function addEventListenerToDisplay() {
                 var time = document.getElementsByClassName("time", taskEdit)[0].value;
                 var content = document.getElementsByClassName("task-content", taskEdit)[0].value; 
             }
-
+            
             var isRight = isInputTaskRight(title, content);
 
             if (isRightDate(time) && isRight) {
-
                 var belongMainSort = document.getElementsByClassName("selected")[0];
                 var belongSubSort = document.getElementsByClassName("li-select")[0];
                 var oldContent = oStorage.getItem(belongMainSort.getAttribute("id")+"content");
@@ -1150,9 +1054,7 @@ function addEventListenerToDisplay() {
                 var setContent = "";
 
                 for (var i = 1; i < arrAll.length; i++) {
-
-                    if (arrAll[i].split("^")[1] === oldTitle) {
-                        
+                    if (arrAll[i].split("^")[1] === oldTitle) {                        
                         arrAll[i] = belongSubSort.getAttribute("id")+"^"+title+"^"+time+"^"+content; 
                         setContent = setContent + "&" + arrAll[i];
                     } else {
@@ -1163,7 +1065,6 @@ function addEventListenerToDisplay() {
                 oStorage.setItem(belongMainSort.getAttribute("id")+"content", setContent);
 
                 for (var i = 0; i < 4; i++) {
-
                     if (i !== 1) {      
                         document.getElementById(arrDescript[i]).style.display = "none";
                     }
@@ -1173,7 +1074,6 @@ function addEventListenerToDisplay() {
                 var displayTask = document.getElementById(arrDescript[1]);
 
                 if (isGetClass) {
-
                     displayTask.getElementsByClassName("task-title")[0].innerHTML = title;
                     displayTask.getElementsByTagName("time")[0].innerHTML = time;
                     displayTask.getElementsByClassName("task-content")[0].innerHTML = content;                     
@@ -1186,13 +1086,10 @@ function addEventListenerToDisplay() {
                 var liCont = document.getElementsByClassName("li-cont");
                
                 for(var i = 0; i < liCont.length; i++) {
-
                     if (liCont[i].getElementsByTagName("li").length !== 0) {
-
                         var subLi = liCont[i].getElementsByTagName("li");
 
-                        for ( var j = 0; j < subLi.length; j++) {
-                            
+                        for ( var j = 0; j < subLi.length; j++) {                            
                             if(subLi[j].innerHTML === oldTitle) {
                                 subLi[j].innerHTML = title;
                                 break;
@@ -1205,7 +1102,6 @@ function addEventListenerToDisplay() {
         }
 
         quitBtn.onclick = function() {
-
             for (var i = 0; i < 4; i++) {    
                     document.getElementById(arrDescript[i]).style.display = "none";
             }
@@ -1213,12 +1109,10 @@ function addEventListenerToDisplay() {
             document.getElementById(arrDescript[2]).style.display = "block";
 
             if (isGetClass) {
-
                 taskEdit.getElementsByClassName("task-title")[0].value = oldTitle;
                 taskEdit.getElementsByClassName("time")[0].value = oldTime;
                 taskEdit.getElementsByClassName("task-content")[0].content = "";                  
             } else {
-
                 document.getElementsByClassName("task-title", taskEdit)[0].value = oldTitle;
                 document.getElementsByClassName("time", taskEdit)[0].value = oldTime;
                 document.getElementsByClassName("task-content", taskEdit)[0].content = "";   
@@ -1235,7 +1129,6 @@ function addEventListenerToDisplay() {
 
 //给最左边列的主分类标签添加事件
 function addEventListenerToSort() {
-
     var arrSort = [];
 
     arrSort[0] = document.getElementById("ife");
@@ -1245,13 +1138,10 @@ function addEventListenerToSort() {
     arrSort[4] = document.getElementById("other");
 
     for (var i = 0; i < 5; i++) {
-
         (function(x) {
             arrSort[x].onclick = function() {
-                //console.log("zheer")
                 var that = this;
                 if (isGetClass) {
-
                     document.getElementById("ife").getElementsByClassName("li-img")[0].setAttribute("src", "images/folder.png");
                     document.getElementById("graduation").getElementsByClassName("li-img")[0].setAttribute("src", "images/folder.png");
                     document.getElementById("association").getElementsByClassName("li-img")[0].setAttribute("src", "images/folder.png");
@@ -1319,8 +1209,7 @@ function addEventListenerToSort() {
 }
 
 //删除某个分类下的数据
-function deleteClassificationData(sortId) {
-    
+function deleteClassificationData(sortId) {   
     var sort = document.getElementById(sortId);
     var sortLi = sort.getElementsByTagName("li");
     
@@ -1331,13 +1220,11 @@ function deleteClassificationData(sortId) {
 
 //给中间列中的按钮添加事件
 function addEventListenerToButton() {
-
     var allTask = document.getElementById("all-task");
     var notFinish = document.getElementById("not-finish");
     var hasFinish = document.getElementById("has-finish");
 
     allTask.onclick = function() {
-
         var checked = document.getElementsByClassName("checked")[0];
 
         checked.setAttribute("class", "");
@@ -1347,7 +1234,6 @@ function addEventListenerToButton() {
     }
 
     notFinish.onclick = function() {
-
         var checked = document.getElementsByClassName("checked")[0];
 
         checked.setAttribute("class", "");
@@ -1357,7 +1243,6 @@ function addEventListenerToButton() {
     }
 
     hasFinish.onclick = function() {
-
         var checked = document.getElementsByClassName("checked")[0];
 
         checked.setAttribute("class", "");
@@ -1369,19 +1254,15 @@ function addEventListenerToButton() {
 
 //中间列按钮的事件处理函数
 function loadHasOrNotFinishTask(isFinish) {
-
     var selected = document.getElementsByClassName("selected")[0];
 
     if (document.getElementsByClassName("li-select").length !== 0) {
-
         var liSelect = document.getElementsByClassName("li-select")[0];
         var selectedTask = liSelect.getAttribute("id");
         var taskData = oStorage.getItem(selected.getAttribute("id") + "content");
 
-        if(taskData !== null && taskData !== "") {
-                        
-            if (taskData.length !== 0) {
-                
+        if(taskData !== null && taskData !== "") {                       
+            if (taskData.length !== 0) {               
                 var arrTaskContent = taskData.split("&");
                 var timetitleArr = [];
                 var arrTime = [];
@@ -1389,7 +1270,6 @@ function loadHasOrNotFinishTask(isFinish) {
                 var arrTask = []
                 
                 for (var i = 1; i < arrTaskContent.length; i++) {
-
                     var arr = arrTaskContent[i].split("^");
 
                     arrTime[i-1] = arr[2];
@@ -1416,8 +1296,7 @@ function loadHasOrNotFinishTask(isFinish) {
                 var ulTime = document.getElementsByClassName("li-time")[0];
                 var mytitle = "";
 
-                for (var i = 0; i < resultArr.length; i++) {
-                
+                for (var i = 0; i < resultArr.length; i++) {                
                     if　(resultArr[i].split("^")[1] === selectedTask) {
                         mytitle = resultArr[i].split("^")[2];
                         break;
@@ -1452,17 +1331,13 @@ function loadHasOrNotFinishTask(isFinish) {
                 var isDisplay = false;
 
                 for (var i = 0; i < arrTime.length; i++) {
-
                     var liTime = document.createElement("li"); 
                     var allTask = resultArr[i];
                     var arrTask = allTask.split("^");
                 
-                    if (isFinish === 0) {
-                        
+                    if (isFinish === 0) {                       
                         for (var j = 1; j < arrTask.length; j+=2) {
-
                             if (arrTask[j] === selectedTask && (oStorage.getItem(arrTask[j+1])==="finish")) {
-
                                 liTime.innerHTML = arrTime[i];
                                 var ulCont = document.createElement("ul");
                                 var liCont = document.createElement("li");
@@ -1498,12 +1373,10 @@ function loadHasOrNotFinishTask(isFinish) {
                             var finishTask = document.getElementById(arrDescript[0]);
 
                             if (isGetClass) {
-
                                 finishTask.getElementsByClassName("task-title")[0].innerHTML = "";
                                 finishTask.getElementsByTagName("time")[0].innerHTML = "";
                                 finishTask.getElementsByClassName("task-content")[0].innerHTML = "";                          
                             } else {
-
                                 document.getElementsByClassName("task-title", finishTask)[0].innerHTML = "";
                                 document.getElementsByTagName("time", finishTask)[0].innerHTML = "";
                                 document.getElementsByClassName("task-content", finishTask)[0].innerHTML = "";  
@@ -1512,12 +1385,9 @@ function loadHasOrNotFinishTask(isFinish) {
                     }
 
                     
-                    if (isFinish === 1) {
-                        
+                    if (isFinish === 1) {                        
                         for (var j = 1; j < arrTask.length; j+=2) {
-
                             if (arrTask[j] === selectedTask && (oStorage.getItem(arrTask[j+1])===null || oStorage.getItem(arrTask[j+1])==="")) {
-
                                 liTime.innerHTML = arrTime[i];
                                 var ulCont = document.createElement("ul");
                                 var liCont = document.createElement("li");
@@ -1552,12 +1422,10 @@ function loadHasOrNotFinishTask(isFinish) {
                             var finishTask = document.getElementById(arrDescript[0]);
 
                             if (isGetClass) {
-
                                 finishTask.getElementsByClassName("task-title")[0].innerHTML = "";
                                 finishTask.getElementsByTagName("time")[0].innerHTML = "";
                                 finishTask.getElementsByClassName("task-content")[0].innerHTML = "";                          
                             } else {
-
                                 document.getElementsByClassName("task-title", finishTask)[0].innerHTML = "";
                                 document.getElementsByTagName("time", finishTask)[0].innerHTML = "";
                                 document.getElementsByClassName("task-content", finishTask)[0].innerHTML = "";  
