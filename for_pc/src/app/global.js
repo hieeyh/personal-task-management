@@ -14,7 +14,7 @@ define(function() {
     return {
         oStorage: window.localStorage,
         arrDescript: ["task-finish", "task-display", "task-edit", "task-new"],
-        chSortName: ["百度IFE项目", "毕业设计", "社团活动", "家庭生活", "其它分类"],
+        chSortName: ["前端项目", "毕业设计", "社团活动", "家庭生活", "其它分类"],
         enSortName: ["ife", "graduation", "association", "family", "other"],
         isGetClass: getFuncParameters(document.getElementsByClassName) === undefined ? true : false
     }
